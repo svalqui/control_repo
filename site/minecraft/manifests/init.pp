@@ -6,8 +6,13 @@ class minecraft {
   ensure => file,
   source => 'https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar',
   }
-  package {'java':
-    ensure => present,
+#  package {'java':
+#    ensure => present,
+#  }
+  java::oracle { 'jdk6' :
+    ensure  => 'present',
+    version => '6',
+    java_se => 'jdk',
   }
   file {'/opt/minecraft/eula.txt':
     ensure => file,
