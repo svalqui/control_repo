@@ -1,10 +1,12 @@
 class minecraft {
-  file {'/opt/minecraft':
+  $url = 'https://s3.amazonaws.com/Minecraft.Download/versions/1.12.2/minecraft_server.1.12.2.jar'
+  $install_dir = '/opt/minecraft'
+  file {$install_dir:
   ensure => directory,
   }
-  file {'/opt/minecraft/minecraft_server.jar':
+  file {"${install_dir}/minecraft_server.jar":
   ensure => file,
-  source => 'https://s3.amazonaws.com/Minecraft.Download/versions/1.12.2/minecraft_server.1.12.2.jar',
+  source => $url,
   mode => '0774'
   before => Service['minecraft'],
   }
